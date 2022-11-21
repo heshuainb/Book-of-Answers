@@ -1,0 +1,77 @@
+<!-- 书籍首页 -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>干饭人答案之书</title>
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+      .duck {
+        position: absolute;
+        z-index: 1;
+        width: 100px;
+        top: 50%;
+        animation: duck-move 3s linear infinite;
+      }
+
+      @keyframes duck-move {
+        0% {
+          right: -100px;
+          transform: translateY(0);
+        }
+        12.5% {
+          transform: translateY(-50px);
+        }
+        25% {
+          transform: translateY(0);
+        }
+        37.5% {
+          transform: translateY(-50px);
+        }
+        50% {
+          transform: translateY(0);
+        }
+        62.5% {
+          transform: translateY(-50px);
+        }
+        75% {
+          transform: translateY(0);
+        }
+        87.5% {
+          transform: translateY(-50px);
+        }
+        100% {
+          right: 100%;
+          transform: translateY(0);
+        }
+      }
+      iframe {
+        height: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="home">
+      <h1 class="title">
+        干饭人答案之书<img src="./images/book.png" alt="" class="book" />
+      </h1>
+
+      <img src="./images/duck.png" alt="" class="duck" />
+
+      <button class="action" onclick="openBook()">打开书本</button>
+
+      <!-- 黑魔法的预加载，减少页面跳转时的等待 -->
+      <iframe src="./question.html" frameborder="0"></iframe>
+      <iframe src="./answer.html" frameborder="0"></iframe>
+
+      <script>
+        function openBook() {
+          location.href = "./question.html";
+        }
+      </script>
+    </div>
+  </body>
+</html>

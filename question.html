@@ -1,0 +1,78 @@
+<!-- 书籍首页 -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>干饭人答案之书</title>
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+      .header {
+        transform: rotateX(180deg);
+        animation: header-in 0.8s linear;
+      }
+      .footer {
+        animation: footer-in 0.8s linear;
+      }
+      .desc span {
+        display: block;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .duck {
+        top: calc(70% - 110px);
+      }
+      @keyframes header-in {
+        from {
+          transform: translateY(-100%) rotateX(180deg);
+        }
+        to {
+          transform: translateY(0) rotateX(180deg);
+        }
+      }
+      @keyframes footer-in {
+        from {
+          transform: translateY(100%);
+        }
+        to {
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="home">
+      <img src="./images/cloud.png" alt="" class="header" />
+      <img src="./images/cloud.png" alt="" class="footer" />
+
+      <p id="desc" class="desc">
+        <span>请闭上眼睛</span>
+        <!--<span>想好自己要问的问题</span>-->
+        <span>点击开始</span>
+        <span>干饭人答案之书</span>
+        <span>将会给你答案！</span>
+      </p>
+
+      <img src="./images/duck.png" alt="" class="duck" />
+
+      <button class="action" onclick="startAsk()">开始解答</button>
+
+      <script>
+        window.onload = function () {
+          const desc = document.querySelector("#desc");
+          for (let index = 0; index < desc.childElementCount; index++) {
+            const child = desc.children[index];
+            setTimeout(() => {
+              child.style.opacity = 1;
+            }, (index + 1) * 800);
+          }
+        };
+        function startAsk() {
+          location.href = "./answer.html";
+        }
+      </script>
+    </div>
+  </body>
+</html>

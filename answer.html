@@ -1,0 +1,111 @@
+<!-- 书籍首页 -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>干饭人答案之书</title>
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+      .answer {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 70%;
+        height: 200px;
+        top: 25%;
+        margin: 0;
+        padding: 10px 30px 10px 35px;
+        font-family: serif;
+        font-size: 18px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-image: url(./images/border.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+      .ask {
+        position: absolute;
+        top: 70%;
+        margin-top: 58px;
+        padding-left: 7px;
+        width: 100%;
+        text-align: center;
+        opacity: 0;
+      }
+      .decorate {
+        position: absolute;
+        width: 110px;
+        right: 0;
+        top: 25%;
+        margin-top: 170px;
+        transform: translate(2%, -50%);
+        opacity: 0;
+      }
+      .boy {
+        position: absolute;
+        left: 0;
+        top: 70%;
+        width: 180px;
+        transform: translate(-20%, -50%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="home">
+      <p id="answer" class="answer"></p>
+
+      <img id="decorate" src="" alt="" class="decorate" />
+
+      <button id="action" class="action" onclick="stop()">停止</button>
+
+      <img src="./images/good.png" alt="" class="boy" />
+
+      <p id="ask" class="ask">解决你的问题了吗？<br />没有就再来一次吧！</p>
+
+      <script src="./answers.js"></script>
+      <script>
+        let interval = null;
+        window.onload = function () {
+          const answerDom = document.querySelector("#answer");
+          interval = setInterval(() => {
+            const answerIndex = Math.floor(Math.random() * ANSWERS.length);
+            const currentAnswer = ANSWERS[answerIndex];
+            answerDom.innerHTML = currentAnswer;
+          }, 100);
+        };
+
+        function stop() {
+          clearInterval(interval);
+
+          showAsk();
+          showDecorate();
+
+          const actionDom = document.querySelector("#action");
+          actionDom.innerHTML = "重启答案之书";
+          actionDom.onclick = function () {
+            location.href = "./question.html";
+          };
+        }
+
+        function showAsk(params) {
+          const askDom = document.querySelector("#ask");
+          askDom.style.opacity = 1;
+        }
+
+        function showDecorate() {
+          const decoratesLength = 4;
+          const decorateDom = document.querySelector("#decorate");
+          const decorate = Math.floor(Math.random() * decoratesLength);
+          decorateDom.src = `./images/decorates/${decorate}.png`;
+          decorateDom.onload = () => {
+            decorateDom.style.opacity = 1;
+          };
+        }
+      </script>
+    </div>
+  </body>
+</html>
